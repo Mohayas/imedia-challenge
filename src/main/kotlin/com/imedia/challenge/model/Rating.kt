@@ -4,15 +4,14 @@ import javax.persistence.*
 
 @Entity
 @Table
-data class Product(
+data class Rating (
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Int=0,
+        val id : Int,
         @Column
-        val title: String="",
+        val comment : String,
         @Column
-        val subTitle: String="",
+        val title : String,
         @Column
-        val description: String="",
-        @Column
-        val price: Double= 0.0)
+        val numberOfStars : Int
+)
