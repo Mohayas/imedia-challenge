@@ -11,14 +11,26 @@ import java.util.*
 class ProductService {
 
     @Autowired
-    lateinit var productDao : ProductDao
+    lateinit var productDao: ProductDao
 
-    fun findById(produtId : Integer) : Optional<Product> {
+    fun findById(produtId: Int): Optional<Product> {
         return productDao.findById(produtId)
     }
 
-    fun save(product : Product) : Product {
-        return productDao.save(product);
+    fun save(product: Product): Product {
+        return productDao.saveOrUpdate(product);
     }
 
+    fun update(product: Product): Boolean {
+        if (productDao.findById(product.id).isEmpty) return false;
+        productDao.saveOrUpdate(product)
+        return true;
+    }
+
+    fun delete(productId: Int) {
+        productDao.delete(productId)
+    }
+    fun getAll(): List<Product> {
+        return productDao.getAll();
+    }
 }

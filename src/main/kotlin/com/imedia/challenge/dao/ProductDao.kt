@@ -12,10 +12,20 @@ class ProductDao {
     @Autowired
     lateinit var productJpaRepository: ProductJpaRepository;
 
-    fun save(product: Product): Product {
+    fun saveOrUpdate(product: Product): Product {
         return productJpaRepository.save(product);
     }
-    fun findById(productId: Integer): Optional<Product> {
+
+    fun findById(productId: Int): Optional<Product> {
         return productJpaRepository.findById(productId)
     }
+
+    fun delete(productId: Int){
+        if(productJpaRepository.existsById(productId))
+        return productJpaRepository.deleteById(productId)
+    }
+    fun getAll(): List<Product> {
+        return productJpaRepository.findAll();
+    }
+
 }
