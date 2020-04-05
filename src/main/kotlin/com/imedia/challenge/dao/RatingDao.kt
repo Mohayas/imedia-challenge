@@ -25,8 +25,8 @@ class RatingDao {
             return ratingJpaRepository.deleteById(ratingId)
     }
 
-    fun getAll(): List<Rating> {
-        return ratingJpaRepository.findAll()
+    fun getAllByProduct(productId : Int): List<Rating> {
+        return ratingJpaRepository.findAllByProductId(productId)
     }
 
 }

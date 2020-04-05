@@ -39,8 +39,8 @@ class ProductController {
     }
 
     @PutMapping
-    fun update(@RequestBody product: Product): ResponseEntity<*> {
-        if (productService.update(product))
+    fun update(@RequestBody productDto: ProductDto): ResponseEntity<*> {
+        if (productService.update(productDto))
             return ResponseEntity<String>("", HttpStatus.OK)
         return ResponseEntity<String>("", HttpStatus.BAD_REQUEST)
 
@@ -63,7 +63,7 @@ class ProductController {
     @GetMapping("/{productId}/ratings")
     fun getAllProductRatings(@PathVariable(name = "productId") productId: Int): ResponseEntity<*> {
 
-        return ResponseEntity<List<RatingDto>>(ratingService.getAll(), HttpStatus.OK)
+        return ResponseEntity<List<RatingDto>>(ratingService.getAllByProductId(productId), HttpStatus.OK)
     }
 
 }

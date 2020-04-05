@@ -22,10 +22,10 @@ class Product {
     @Column
     var price: Double = 0.0
 
-    @OneToMany(mappedBy = "product",  fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product", cascade = arrayOf(CascadeType.REMOVE),  fetch = FetchType.LAZY)
     var ratings: List<Rating> = emptyList()
 
-    @OneToMany(mappedBy = "product", cascade = arrayOf(CascadeType.PERSIST), fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", cascade = arrayOf(CascadeType.PERSIST,CascadeType.REMOVE), fetch = FetchType.EAGER)
     var images: List<Image> = emptyList()
 
 }

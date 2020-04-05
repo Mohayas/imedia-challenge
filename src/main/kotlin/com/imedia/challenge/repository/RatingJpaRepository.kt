@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface RatingJpaRepository : JpaRepository<Rating, Int>{
+
+    fun findAllByProductId(productId : Int) : List<Rating>
 }

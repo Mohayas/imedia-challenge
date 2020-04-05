@@ -32,8 +32,9 @@ class ProductService {
         return productDto
     }
 
-    fun update(product: Product): Boolean {
-        if (productDao.findById(product.id).isEmpty) return false;
+    fun update(productDto: ProductDto): Boolean {
+        if (productDao.findById(productDto.id).isEmpty) return false;
+        val  product = mapper.productDtoToProduct(productDto)
         productDao.saveOrUpdate(product)
         return true;
     }

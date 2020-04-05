@@ -50,8 +50,8 @@ class RatingService {
         ratingDao.delete(ratingId)
     }
 
-    fun getAll(): List<RatingDto> {
-        val ratings = ratingDao.getAll()
+    fun getAllByProductId(productId : Int): List<RatingDto> {
+        val ratings = ratingDao.getAllByProduct(productId)
         return ratings.stream().map { rating -> mapper.ratingToRatingDto(rating) }.collect(Collectors.toList())
     }
 }

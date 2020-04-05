@@ -36,7 +36,7 @@ class RatingController {
 
     @DeleteMapping("/{ratingId}")
     fun delete(@PathVariable(name = "ratingId") ratingId: Int): ResponseEntity<*> {
-        return ResponseEntity(ratingId, HttpStatus.NO_CONTENT)
+        return ResponseEntity(ratingService.delete(ratingId), HttpStatus.NO_CONTENT)
     }
 
 
