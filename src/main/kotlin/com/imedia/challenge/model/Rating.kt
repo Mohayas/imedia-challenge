@@ -1,6 +1,8 @@
 package com.imedia.challenge.model
 
 import javax.persistence.*
+import javax.validation.constraints.Max
+import javax.validation.constraints.Min
 
 @Entity
 @Table
@@ -13,6 +15,8 @@ import javax.persistence.*
         @Column
         var title : String=""
         @Column
+        @Min(0,message = "The number of stars MUST NOT be negative value.")
+        @Max(5,message = "The number of stars MUST NOT be more than 5.")
         var numberOfStars : Int=0
 
         @ManyToOne(fetch = FetchType.EAGER)
