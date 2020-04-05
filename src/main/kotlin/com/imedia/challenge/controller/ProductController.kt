@@ -2,7 +2,6 @@ package com.imedia.challenge.controller
 
 import com.imedia.challenge.dto.ProductDto
 import com.imedia.challenge.dto.RatingDto
-import com.imedia.challenge.model.Product
 import com.imedia.challenge.service.ProductService
 import com.imedia.challenge.service.RatingService
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,7 +22,7 @@ class ProductController {
 
     @GetMapping("/{productId}")
     fun findById(@PathVariable(name = "productId") productId: Int): ResponseEntity<*> {
-        var productDto = productService.findById(productId)
+        val productDto = productService.findById(productId)
         if (productDto != null) return ResponseEntity<ProductDto?>(productDto, HttpStatus.OK)
         return ResponseEntity<String>("No product found", HttpStatus.NOT_FOUND)
     }
@@ -55,8 +54,7 @@ class ProductController {
     fun rate(@RequestBody ratingDto: RatingDto, @PathVariable(name = "productId") productId: Int): ResponseEntity<*> {
 
         ratingDto.productId = productId
-        var rating = ratingService.save(ratingDto)
-        if (rating == null) return ResponseEntity("", HttpStatus.BAD_REQUEST)
+        val rating: RatingDto? = ratingService.save(ratingDto) ?: return ResponseEntity("", HttpStatus.BAD_REQUEST)
         return ResponseEntity(rating, HttpStatus.CREATED)
     }
 

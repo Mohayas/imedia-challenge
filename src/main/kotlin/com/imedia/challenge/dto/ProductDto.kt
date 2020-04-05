@@ -1,7 +1,5 @@
 package com.imedia.challenge.dto
 
-import com.imedia.challenge.model.Rating
-
 data class ProductDto(
         val id: Int = 0,
         val title: String = "",

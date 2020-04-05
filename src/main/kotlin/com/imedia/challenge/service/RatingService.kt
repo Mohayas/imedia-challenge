@@ -4,7 +4,6 @@ import com.imedia.challenge.dao.ProductDao
 import com.imedia.challenge.dao.RatingDao
 import com.imedia.challenge.dto.RatingDto
 import com.imedia.challenge.mapper.Mapper
-import com.imedia.challenge.model.Rating
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.stream.Collectors
@@ -25,7 +24,7 @@ class RatingService {
         val rating = ratingDao.findById(ratingId)
         if (rating.isPresent)
             return mapper.ratingToRatingDto(rating.get())
-        return null;
+        return null
     }
 
     fun save(ratingDto: RatingDto): RatingDto? {
@@ -38,12 +37,12 @@ class RatingService {
 
     fun update(ratingDto: RatingDto): Boolean {
 
-        if (ratingDao.findById(ratingDto.id).isEmpty) return false;
+        if (ratingDao.findById(ratingDto.id).isEmpty) return false
 
         val rating = mapper.ratingDtoToRating(ratingDto)
         ratingDao.saveOrUpdate(rating)
 
-        return true;
+        return true
     }
 
     fun delete(ratingId: Int) {
