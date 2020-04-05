@@ -10,22 +10,23 @@ import java.util.*
 class ProductDao {
 
     @Autowired
-    lateinit var productJpaRepository: ProductJpaRepository;
+    lateinit var productJpaRepository: ProductJpaRepository
 
     fun saveOrUpdate(product: Product): Product {
-        return productJpaRepository.save(product);
+        return productJpaRepository.save(product)
     }
 
     fun findById(productId: Int): Optional<Product> {
         return productJpaRepository.findById(productId)
     }
 
-    fun delete(productId: Int){
-        if(productJpaRepository.existsById(productId))
-        return productJpaRepository.deleteById(productId)
+    fun delete(productId: Int) {
+        if (productJpaRepository.existsById(productId))
+            return productJpaRepository.deleteById(productId)
     }
+
     fun getAll(): List<Product> {
-        return productJpaRepository.findAll();
+        return productJpaRepository.findAll()
     }
 
 }

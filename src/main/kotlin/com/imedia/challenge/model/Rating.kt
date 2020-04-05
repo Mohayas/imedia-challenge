@@ -4,14 +4,26 @@ import javax.persistence.*
 
 @Entity
 @Table
-data class Rating (
-        @Id
+ class Rating {
+       @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id : Int,
+        var id : Int=0
         @Column
-        val comment : String,
+        var comment : String=""
         @Column
-        val title : String,
+        var title : String=""
         @Column
-        val numberOfStars : Int
-)
+        var numberOfStars : Int=0
+
+        @ManyToOne(fetch = FetchType.EAGER)
+        @JoinColumn(name = "product_id")
+        lateinit var product: Product
+
+       constructor(id: Int, comment: String, title: String, numberOfStars: Int, product: Product) {
+              this.id = id
+              this.comment = comment
+              this.title = title
+              this.numberOfStars = numberOfStars
+              this.product = product
+       }
+}
